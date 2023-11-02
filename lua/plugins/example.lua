@@ -1,25 +1,58 @@
--- since this is just an example spec, don't actually load anything here and return an empty spec
--- stylua: ignore
-if true then return {} end
-
--- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
---
--- In your plugin files, you can:
--- * add extra plugins
--- * disable/enabled LazyVim plugins
--- * override the configuration of LazyVim plugins
+if true then
+  return {}
+end
 return {
-  -- add gruvbox
-  { "ellisonleao/gruvbox.nvim" },
-
-  -- Configure LazyVim to load gruvbox
+  { "tpope/fugitive.vim" },
+  --
   {
-    "LazyVim/LazyVim",
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- required
+      "nvim-telescope/telescope.nvim", -- optional
+      "sindrets/diffview.nvim", -- optional
+      "ibhagwan/fzf-lua", -- optional
+    },
+    config = true,
+  },
+  --
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
     opts = {
-      colorscheme = "gruvbox",
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
+  },
+  --
+  {
+    "folke/tokyonight.nvim",
+    ops = {
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   },
 
+  -- Configure LazyVim to load gruvbox
+  {
+    "cryptomilk/nightcity.nvim",
+    version = "*",
+  },
+  --
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      "kdheepak/monochrome.nvim",
+      colorscheme = "monochrome",
+    },
+  },
   -- change trouble config
   {
     "folke/trouble.nvim",
@@ -80,19 +113,6 @@ return {
       config = function()
         require("telescope").load_extension("fzf")
       end,
-    },
-  },
-
-  -- add pyright to lspconfig
-  {
-    "neovim/nvim-lspconfig",
-    ---@class PluginLspOpts
-    opts = {
-      ---@type lspconfig.options
-      servers = {
-        -- pyright will be automatically installed with mason and loaded with lspconfig
-        pyright = {},
-      },
     },
   },
 
