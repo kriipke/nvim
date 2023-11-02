@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- return {
 --   "ayu-theme/ayu-vim",
 --   config = function()
@@ -23,6 +24,8 @@
 --     },
 --   },
 -- }
+=======
+>>>>>>> ea69152 (first changes to boilerplate lazy.nvim bootstrapping repo)
 return {
   "Shatur/neovim-ayu",
   config = function()
