@@ -1,7 +1,9 @@
 require("config.lazy")
 
-vim.cmd.set("termguicolors")
-vim.o.background = "dark"
-vim.cmd.colorscheme("ayu-dark")
+vim.opt.termguicolors = true
+vim.o.background = "light"
+vim.cmd.colorscheme("PaperColor")
 -- vim.cmd.colorscheme("oxocarbon")
 -- vim.cmd.colorscheme("monochrome")
+-- vim.cmd.colorscheme("nightcity-kabuki")
+require("bufferline").setup({})

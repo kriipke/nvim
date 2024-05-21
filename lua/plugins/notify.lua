@@ -9,7 +9,7 @@ return {
       timeout = 4000,
       max_width = nil,
       max_height = nil,
-      background_colour = "Normal",
+      background_colour = "CursorLine",
       minimum_width = 50,
     })
     vim.notify = require("notify")
