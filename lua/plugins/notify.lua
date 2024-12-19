@@ -14,4 +14,9 @@ return {
     })
     vim.notify = require("notify")
   end,
+  opts = {
+    level = 3,
+    render = "minimal",
+    stages = "static",
+  },
 }
