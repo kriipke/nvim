@@ -2,6 +2,7 @@ return {
   "rcarriga/nvim-notify",
   config = function()
     require("notify").setup({
+      level = "ERROR",
       stages = "fade",
       on_open = nil,
       on_close = nil,
