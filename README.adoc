@@ -1,0 +1,31 @@
+# 💤 LazyVim Configuration
+:toc:
+:toc-placement!:
+:toc-title: 
+
+toc::[]
+
+## References 
+https://github.com/LazyVim/LazyVim:: This repo is a fork of this standard template for a LazyVim configuration.
+https://lazyvim.github.io/installation:: Documentation where to go once you've cloned the base config repo 
+https://www.youtube.com/watch?v=N93cTbtLCIM["Configuration Walkthrough Video"]::  https://github.com/elijahmanor["@elijahmanor"] with a walkthrough to you started with custom configuraiton; referenced in :h files for LazyVim
+
+## Usage
+
+  $ docker build -t nvim:custom .
+  $ alias nvim='docker run -v "$({git rev-parse --is-inside-work-tree &>/dev/null && git rev-parse --show-toplevel} || realpath .):/src" -w /src --rm -it nvim:custom'
+  $ nvim
+
+
+## Repository Structure
+
+### `/lua/lazyvim/config`             
+
+INFO:*`:h LazyVim-configuration`*
+
+The files under `config` will be automatically loaded at the appropriate time, so you don’t need to require those files manually. 
+
+Immutable set of configs shiped by LazyVim that are sourced prior to any user configs. Those are sourced after out of `/lua/plugins/`.
+
+### `/lua/plugins/`
+`:h LazyVim-configuration`
