@@ -2,6 +2,13 @@
 :toc:
 :toc-placement!:
 :toc-title: 
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 toc::[]
 
@@ -19,9 +26,19 @@ https://www.youtube.com/watch?v=N93cTbtLCIM["Configuration Walkthrough Video"]::
 
 ## Repository Structure
 
-### `/lua/lazyvim/config`             
+### `/lua/lazyvim/config`      
+__**`:h LazyVim-configuration`**__
 
-INFO:*`:h LazyVim-configuration`*
+
+[NOTE]
+====
+A sample note admonition.
+We can use gemoji icons in the Asciidoctor markup.
+We assign an icon name to the document
+attributes `tip-caption`, `note-caption` and `important-caption`.
+====
+
+
 
 The files under `config` will be automatically loaded at the appropriate time, so you don’t need to require those files manually. 
 
