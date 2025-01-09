@@ -1,13 +1,22 @@
-return {
+return{
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
   build = ":Copilot auth",
-  keys = { { "<F3>", "<Plug>(copilot-accept-word)", desc = "Symbols Outline" } },
+  event = "InsertEnter",
   opts = {
-    suggestion = { enabled = true },
+    suggestion = {
+      enabled = not vim.g.ai_cmp,
+      auto_trigger = true,
+      keymap = {
+        accept = false, -- handled by nvim-cmp / blink.cmp
+        next = "<M-]>",
+        prev = "<M-[>",
+      },
+    },
     panel = { enabled = true },
     filetypes = {
       markdown = true,
+      yaml = true,
       help = true,
     },
   },

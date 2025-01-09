@@ -1,6 +1,6 @@
 return {
   "folke/tokyonight.nvim",
-  ops = {
+  opts = {
     transparent = true,
     styles = {
       sidebars = "transparent",

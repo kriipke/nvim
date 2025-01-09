@@ -1,4 +1,4 @@
-# 💤 LazyVim Configuration
+= 💤 LazyVim Configuration
 :toc:
 :toc-placement!:
 :toc-title: 
@@ -10,35 +10,66 @@ ifdef::env-github[]
 :warning-caption: :warning:
 endif::[]
 
+This repoistory contains the configs and files needed to build a custom `nvim` container ready to act as a fully featured text editor out of the box.
+
 toc::[]
 
-## References 
-https://github.com/LazyVim/LazyVim:: This repo is a fork of this standard template for a LazyVim configuration.
-https://lazyvim.github.io/installation:: Documentation where to go once you've cloned the base config repo 
-https://www.youtube.com/watch?v=N93cTbtLCIM["Configuration Walkthrough Video"]::  https://github.com/elijahmanor["@elijahmanor"] with a walkthrough to you started with custom configuraiton; referenced in :h files for LazyVim
 
-## Usage
+== References 
 
-  $ docker build -t nvim:custom .
-  $ alias nvim='docker run -v "$({git rev-parse --is-inside-work-tree &>/dev/null && git rev-parse --show-toplevel} || realpath .):/src" -w /src --rm -it nvim:custom'
-  $ nvim
+https://github.com/LazyVim/starer::
+   This repo is a fork of this standard template for a LazyVim configuration.
+https://lazyvim.github.io/installation::
+   Documentation where to go once you've cloned the base config repo 
+https://www.youtube.com/watch?v=N93cTbtLCIM["Configuration Walkthrough Video"]::
+   Confguration discussion w ttps://github.com/elijahmanor["@elijahmanor"] walkingthrough the deployment and use of the LazyVim/starter` repo
 
+== Usage
+
+
+=== Manual
+
+To build and push the images:
+
+
+  $ export IMAGE_TAG=github.com/kriipke/nvim:0.1.5
+  $ docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t $IMAGE_TAG  . --load
+  $ docker push $IMAGE_TAG 
+
+
+=== I a rollout/deployment
+
+    name: ci
+    
+    on:
+      push:
+    
+    jobs:
+      buildx:
+        runs-on: ubuntu-latest
+        steps:
+          -
+            name: Checkout
+            uses: actions/checkout@v4
+          -
+            # Add support for more platforms with QEMU (optional)
+            # https://github.com/docker/setup-qemu-action
+            name: Set up QEMU
+            uses: docker/setup-qemu-action@v3
+          -
+            name: Set up Docker Buildx
+            uses: docker/setup-buildx-action@v3
+            with:
+              platforms: linux/amd64, linux/arm64 #linux/arm/v7
+
+    
 
 ## Repository Structure
 
-### `/lua/lazyvim/config`      
+### `/lua/lazyvim/config/lazy.lua`      
+### `/lua/lazyvim/config/options.lua`      
+### `/lua/lazyvim/config/`      
 __**`:h LazyVim-configuration`**__
-
-
-[NOTE]
-====
-A sample note admonition.
-We can use gemoji icons in the Asciidoctor markup.
-We assign an icon name to the document
-attributes `tip-caption`, `note-caption` and `important-caption`.
-====
-
-
 
 The files under `config` will be automatically loaded at the appropriate time, so you don’t need to require those files manually. 
 
