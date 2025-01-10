@@ -14,8 +14,21 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+local papercolor = {
+    'NLKNguyen/papercolor-theme',
+    lazy = false,
+    priority = 1000,
+    config = function()
+	vim.opt.termguicolors = true
+        vim.cmd.colorscheme('PaperColor')
+        vim.o.background = 'light'
+    end
+}
+
+--  LAZYVIM SETUP
 require("lazy").setup({
   spec = {
+     papercolor,
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
     -- import/override with your plugins
@@ -30,7 +43,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  -- install = { colorscheme = { "tokyonight", "habamax" } },
   checker = {
     enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
